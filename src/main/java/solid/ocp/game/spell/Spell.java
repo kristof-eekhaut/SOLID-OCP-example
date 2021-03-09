@@ -1,5 +1,7 @@
 package solid.ocp.game.spell;
 
+import java.util.Optional;
+
 public abstract class Spell {
 
     private final int manaCost;
@@ -17,4 +19,6 @@ public abstract class Spell {
     public int getDamage() {
         return damage;
     }
+
+    public abstract Optional<Integer> getSlowFactor();
 }

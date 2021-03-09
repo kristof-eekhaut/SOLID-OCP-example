@@ -1,5 +1,7 @@
 package solid.ocp.game.spell;
 
+import java.util.Optional;
+
 public class FrostBolt extends Spell {
 
     public int slowFactor = 2;
@@ -8,7 +10,7 @@ public class FrostBolt extends Spell {
         super(10, 15);
     }
 
-    public int getSlowFactor() {
-        return slowFactor;
+    public Optional<Integer> getSlowFactor() {
+        return Optional.of(slowFactor);
     }
 }

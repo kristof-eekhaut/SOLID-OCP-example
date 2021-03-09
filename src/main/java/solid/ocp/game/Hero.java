@@ -1,6 +1,5 @@
 package solid.ocp.game;
 
-import solid.ocp.game.spell.FrostBolt;
 import solid.ocp.game.spell.Spell;
 
 public class Hero {
@@ -19,9 +18,8 @@ public class Hero {
         mana -= spell.getManaCost();
         goblin.damage(spell.getDamage());
 
-        if (spell instanceof FrostBolt) {
-            FrostBolt frostBolt = (FrostBolt) spell;
-            goblin.slow(frostBolt.getSlowFactor());
+        if (spell.getSlowFactor().isPresent()) {
+            goblin.slow(spell.getSlowFactor().get());
         }
     }
 }
