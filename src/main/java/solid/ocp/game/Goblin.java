@@ -23,4 +23,9 @@ public class Goblin {
     public void slow(int factor) {
         this.movementSpeed = baseMovementSpeed / factor;
     }
+
+    public void stun() {
+        this.movementSpeed = 0;
+        this.attackSpeed = 0;
+    }
 }
