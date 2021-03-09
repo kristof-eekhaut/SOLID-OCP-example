@@ -19,4 +19,8 @@ public class Goblin {
     public void damage(int hitPoints) {
         this.hitPoints -= hitPoints;
     }
+
+    public void slow(int factor) {
+        this.movementSpeed = baseMovementSpeed / factor;
+    }
 }

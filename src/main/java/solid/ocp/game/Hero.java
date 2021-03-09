@@ -1,5 +1,8 @@
 package solid.ocp.game;
 
+import solid.ocp.game.spell.FrostBolt;
+import solid.ocp.game.spell.Spell;
+
 public class Hero {
 
     private String name;
@@ -15,5 +18,10 @@ public class Hero {
     void cast(Spell spell, Goblin goblin) {
         mana -= spell.getManaCost();
         goblin.damage(spell.getDamage());
+
+        if (spell instanceof FrostBolt) {
+            FrostBolt frostBolt = (FrostBolt) spell;
+            goblin.slow(frostBolt.getSlowFactor());
+        }
     }
 }

@@ -1,6 +1,6 @@
-package solid.ocp.game;
+package solid.ocp.game.spell;
 
-public class Spell {
+public abstract class Spell {
 
     private final int manaCost;
     private final int damage;
