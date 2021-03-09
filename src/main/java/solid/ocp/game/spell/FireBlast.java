@@ -1,6 +1,7 @@
 package solid.ocp.game.spell;
 
-import java.util.Optional;
+import solid.ocp.game.Goblin;
+import solid.ocp.game.Hero;
 
 public class FireBlast extends Spell {
 
@@ -8,7 +9,9 @@ public class FireBlast extends Spell {
         super(15, 25);
     }
 
-    public Optional<Integer> getSlowFactor() {
-        return Optional.empty();
+    @Override
+    public void cast(Hero hero, Goblin goblin) {
+        hero.consumeMana(manaCost);
+        goblin.damage(damage);
     }
 }

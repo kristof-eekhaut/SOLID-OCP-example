@@ -15,11 +15,10 @@ public class Hero {
     }
 
     void cast(Spell spell, Goblin goblin) {
-        mana -= spell.getManaCost();
-        goblin.damage(spell.getDamage());
+        spell.cast(this, goblin);
+    }
 
-        if (spell.getSlowFactor().isPresent()) {
-            goblin.slow(spell.getSlowFactor().get());
-        }
+    public void consumeMana(int mana) {
+        this.mana -= mana;
     }
 }

@@ -1,24 +1,17 @@
 package solid.ocp.game.spell;
 
-import java.util.Optional;
+import solid.ocp.game.Goblin;
+import solid.ocp.game.Hero;
 
 public abstract class Spell {
 
-    private final int manaCost;
-    private final int damage;
+    protected final int manaCost;
+    protected final int damage;
 
     public Spell(int manaCost, int damage) {
         this.manaCost = manaCost;
         this.damage = damage;
     }
 
-    public int getManaCost() {
-        return manaCost;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public abstract Optional<Integer> getSlowFactor();
+    public abstract void cast(Hero hero, Goblin goblin);
 }
