@@ -15,9 +15,6 @@ public class Goblin {
     private int hitPoints;
     private int attackSpeed;
 
-    private int slowedTimeRemaining = 0;
-    private int stunnedTimeRemaining = 0;
-
     private final List<Effect> effects = new ArrayList<>();
 
     public Goblin(int baseHitPoints, int baseMovementSpeed, int baseAttackSpeed) {
@@ -26,19 +23,26 @@ public class Goblin {
         this.attackSpeed = this.baseAttackSpeed = baseAttackSpeed;
     }
 
+    public int getBaseMovementSpeed() {
+        return baseMovementSpeed;
+    }
+
+    public int getBaseAttackSpeed() {
+        return baseAttackSpeed;
+    }
+
     public void damage(int hitPoints) {
         this.hitPoints -= hitPoints;
     }
 
-    public void slow(int factor, int duration) {
-        this.movementSpeed = baseMovementSpeed / factor;
-        this.slowedTimeRemaining = duration;
+    public void reduceMovementSpeed(int reducedMovementSpeed) {
+        if (this.movementSpeed > reducedMovementSpeed)
+            this.movementSpeed = reducedMovementSpeed;
     }
 
-    public void stun(int duration) {
-        this.movementSpeed = 0;
-        this.attackSpeed = 0;
-        this.stunnedTimeRemaining = duration;
+    public void reduceAttackSpeed(int reducedAttackSpeed) {
+        if (this.attackSpeed > reducedAttackSpeed)
+            this.attackSpeed = reducedAttackSpeed;
     }
 
     public void addEffect(Effect effect) {
@@ -47,15 +51,9 @@ public class Goblin {
 
     /** Called every second by the game engine */
     public void update() {
+        this.movementSpeed = baseMovementSpeed;
+        this.attackSpeed = baseAttackSpeed;
+
         effects.forEach(Effect::update);
-
-        this.slowedTimeRemaining--;
-        this.stunnedTimeRemaining--;
-
-        if (slowedTimeRemaining == 0 && stunnedTimeRemaining == 0)
-            this.movementSpeed = baseMovementSpeed;
-
-        if (stunnedTimeRemaining == 0)
-            this.attackSpeed = baseAttackSpeed;
     }
 }

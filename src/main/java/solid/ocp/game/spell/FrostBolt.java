@@ -2,6 +2,7 @@ package solid.ocp.game.spell;
 
 import solid.ocp.game.Goblin;
 import solid.ocp.game.Hero;
+import solid.ocp.game.effect.Freezing;
 
 public class FrostBolt extends Spell {
 
@@ -15,6 +16,6 @@ public class FrostBolt extends Spell {
     public void cast(Hero hero, Goblin goblin) {
         hero.consumeMana(manaCost);
         goblin.damage(damage);
-        goblin.slow(slowFactor, 5);
+        goblin.addEffect(new Freezing(goblin, 5, slowFactor));
     }
 }

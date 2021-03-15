@@ -2,6 +2,7 @@ package solid.ocp.game.spell;
 
 import solid.ocp.game.Goblin;
 import solid.ocp.game.Hero;
+import solid.ocp.game.effect.Stunned;
 
 public class LightningStrike extends Spell {
 
@@ -15,6 +16,6 @@ public class LightningStrike extends Spell {
     public void cast(Hero hero, Goblin goblin) {
         hero.consumeMana(manaCost);
         goblin.damage(damage);
-        goblin.stun(2);
+        goblin.addEffect(new Stunned(goblin, 2));
     }
 }
