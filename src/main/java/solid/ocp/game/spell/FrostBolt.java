@@ -15,6 +15,6 @@ public class FrostBolt extends Spell {
     public void cast(Hero hero, Goblin goblin) {
         hero.consumeMana(manaCost);
         goblin.damage(damage);
-        goblin.slow(slowFactor);
+        goblin.slow(slowFactor, 5);
     }
 }

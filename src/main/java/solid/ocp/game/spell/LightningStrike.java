@@ -15,6 +15,6 @@ public class LightningStrike extends Spell {
     public void cast(Hero hero, Goblin goblin) {
         hero.consumeMana(manaCost);
         goblin.damage(damage);
-        goblin.stun();
+        goblin.stun(2);
     }
 }

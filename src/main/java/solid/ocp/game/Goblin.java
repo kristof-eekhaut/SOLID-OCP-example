@@ -10,6 +10,9 @@ public class Goblin {
     private int hitPoints;
     private int attackSpeed;
 
+    private int slowedTimeRemaining = 0;
+    private int stunnedTimeRemaining = 0;
+
     public Goblin(int baseHitPoints, int baseMovementSpeed, int baseAttackSpeed) {
         this.hitPoints = this.baseHitPoints = baseHitPoints;
         this.movementSpeed = this.baseMovementSpeed = baseMovementSpeed;
@@ -20,12 +23,26 @@ public class Goblin {
         this.hitPoints -= hitPoints;
     }
 
-    public void slow(int factor) {
+    public void slow(int factor, int duration) {
         this.movementSpeed = baseMovementSpeed / factor;
+        this.slowedTimeRemaining = duration;
     }
 
-    public void stun() {
+    public void stun(int duration) {
         this.movementSpeed = 0;
         this.attackSpeed = 0;
+        this.stunnedTimeRemaining = duration;
+    }
+
+    /** Called every second by the game engine */
+    public void update() {
+        this.slowedTimeRemaining--;
+        this.stunnedTimeRemaining--;
+
+        if (slowedTimeRemaining == 0 && stunnedTimeRemaining == 0)
+            this.movementSpeed = baseMovementSpeed;
+
+        if (stunnedTimeRemaining == 0)
+            this.attackSpeed = baseAttackSpeed;
     }
 }
