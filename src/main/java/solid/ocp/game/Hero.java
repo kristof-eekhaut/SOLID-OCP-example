@@ -15,5 +15,8 @@ public class Hero {
     void cast(Spell spell, Goblin goblin) {
         mana -= spell.getManaCost();
         goblin.damage(spell.getDamage());
+
+        if (spell.getSpellType().equals(SpellType.FROST_BOLT))
+            goblin.slow();
     }
 }
